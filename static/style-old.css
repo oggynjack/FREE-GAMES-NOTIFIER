@@ -1,0 +1,467 @@
+:root {
+    --primary: #fb8500;
+    --primary-dark: #e85d04;
+    --bg: #fffcf2;
+    --card-bg: #ffe6a7;
+    --text: #432818;
+    --text-light: #6a4c3e;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    /* Removed align-items: center to let it flow from top */
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+    /* Enable body scroll */
+}
+
+.container {
+    width: 95%;
+    max-width: 1600px;
+    height: auto;
+    /* Allow growth */
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+    padding-bottom: 50px;
+    /* Space at bottom */
+}
+
+header {
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 15px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+header h1 {
+    font-size: 1.8rem;
+    color: var(--primary-dark);
+    margin: 0;
+}
+
+header p {
+    margin: 0;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Main Layout Adjustment for Dashboard */
+main {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 25px;
+    height: auto;
+    /* Let it grow */
+    min-height: 100%;
+}
+
+.card {
+    background: linear-gradient(145deg, #fff, #fffcf2);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    height: auto;
+    /* Let it grow */
+    min-height: 100%;
+    /* At least full height of parent */
+    border: 1px solid rgba(251, 133, 0, 0.1);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    /* Removed overflow: hidden or auto to let it expand the page */
+}
+
+.settings-card {
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Settings Card - Scrollable content */
+.settings-content-scroll {
+    /* No longer strictly needed if card scrolls, but keeping for safety */
+    flex-grow: 1;
+}
+
+/* Status Card */
+.status-card {
+    /* Uses .card styles */
+}
+
+h2 {
+    color: var(--primary-dark);
+    margin-top: 0;
+    border-bottom: 2px solid var(--bg);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    flex-shrink: 0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+input[type="number"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ffcc80;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(251, 133, 0, 0.3);
+}
+
+/* Checkboxes */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.custom-checkbox {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    background: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+}
+
+.custom-checkbox:hover {
+    background: #ffe0b2;
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+.custom-checkbox input:checked+.checkmark {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+.custom-checkbox span.checkmark {
+    height: 15px;
+    width: 15px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    position: relative;
+    transition: all 0.2s;
+}
+
+/* Uiverse Buttons */
+.uiverse-btn {
+    position: relative;
+    padding: 12px 35px;
+    border-radius: 6px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    background-color: var(--primary-dark);
+    transition: all 0.2s ease;
+    font-family: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.uiverse-btn:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(232, 93, 4, 0.4);
+}
+
+.uiverse-btn-run {
+    background: linear-gradient(45deg, #fb8500, #ffb703);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(251, 133, 0, 0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+.uiverse-btn-run:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(251, 133, 0, 0.5);
+}
+
+.uiverse-btn-run:active {
+    transform: translateY(1px);
+}
+
+/* Email List */
+.email-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.email-actions button {
+    background: none;
+    border: none;
+    color: #ff0000;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.email-input-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-small {
+    background: var(--primary);
+    border: none;
+    color: white;
+    padding: 0 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-small:hover {
+    background: var(--primary-dark);
+}
+
+/* Stats */
+.stats-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(232, 93, 4, 0.2);
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    margin-top: 5px;
+}
+
+/* Console: Fixed height, fixed at top */
+.console-box {
+    background: #1e1e1e;
+    color: #4ade80;
+    font-family: 'Consolas', monospace;
+    padding: 15px;
+    border-radius: 10px;
+    height: 150px;
+    /* Reduced specific height */
+    min-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    border: 1px solid #333;
+    flex-shrink: 0;
+}
+
+.console-box p {
+    margin: 4px 0;
+    line-height: 1.4;
+}
+
+.log-info {
+    color: #4ade80;
+}
+
+.log-success {
+    color: #4ade80;
+    font-weight: bold;
+}
+
+.log-warning {
+    color: #fbbf24;
+}
+
+.log-error {
+    color: #ef4444;
+    font-weight: bold;
+}
+
+.placeholder-text {
+    color: #666;
+    font-style: italic;
+}
+
+/* Games Grid Title */
+h3 {
+    margin: 10px 0;
+    color: var(--primary-dark);
+    flex-shrink: 0;
+}
+
+.filter-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+#gameSearch {
+    flex-grow: 1;
+    padding: 8px 12px;
+    border: 2px solid #ffcc80;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+#gameSort {
+    padding: 8px 12px;
+    border: 2px solid #ffcc80;
+    border-radius: 8px;
+    background: white;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+#gameSearch:focus,
+#gameSort:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+
+/* Games Grid: FLOW NATURALLY */
+.found-games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    /* Removed overflow-y: auto and flex-grow to let it expand the parent card */
+    padding: 5px;
+    border-top: 1px solid #eee;
+    margin-top: 5px;
+    padding-bottom: 20px;
+    /* Add padding at bottom for scrolling space */
+}
+
+/* Game Card Styles */
+.game-card-link {
+    display: block;
+    transition: transform 0.2s;
+}
+
+.game-card-link:hover {
+    transform: translateY(-3px);
+}
+
+.game-card-small {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid #eee;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card-small:hover {
+    box-shadow: 0 8px 20px rgba(251, 133, 0, 0.15);
+}
+
+.game-card-small img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+}
+
+.game-card-small .info {
+    padding: 10px;
+}
+
+.game-card-small h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #333;
+}
+
+.price-tag {
+    background: #ffe0b2;
+    color: #e65100;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffd6a5;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffb703;
+}

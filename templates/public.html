@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epic Free Games Notifier - Public Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="particles"></div>
+
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-gamepad"></i> Epic Free Games Notifier</h1>
+            <p>Never miss a free game again - Get notified automatically!</p>
+            <div style="margin-top: 1rem;">
+                <a href="/login" style="color: var(--primary); text-decoration: none;">
+                    <i class="fas fa-sign-in-alt"></i> Admin Login
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <section class="card">
+                <h2><i class="fas fa-bell"></i> Notification Status</h2>
+                <p style="color: var(--text-muted); margin: 1rem 0;">
+                    This system is actively monitoring Epic Games Store for free games.
+                </p>
+
+                <div class="form-group">
+                    <label><i class="fas fa-users"></i> Registered Recipients</label>
+                    <div id="emailList">
+                        {% for email in settings.get('emails', []) %}
+                        <div class="email-item">
+                            <span><i class="fas fa-envelope"></i> {{ email }}</span>
+                        </div>
+                        {% endfor %}
+                        {% if not settings.get('emails') %}
+                        <p style="color: var(--text-muted); font-style: italic;">
+                            No email recipients configured
+                        </p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <p
+                    style="margin-top: 2rem; padding: 1rem; background: rgba(0, 255, 159, 0.1); border-radius: 12px; border: 1px solid rgba(0, 255, 159, 0.3);">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Note:</strong> This is a read-only public view.
+                    <a href="/login" style="color: var(--primary);">Login as admin</a> to manage settings.
+                </p>
+            </section>
+
+            <section class="card">
+                <h2><i class="fas fa-clock"></i> Latest Games</h2>
+                <div class="found-games-grid" style="margin-top: 1.5rem;">
+                    <p style="color: var(--text-muted); text-align: center; padding: 2rem;">
+                        <i class="fas fa-sync fa-spin"></i> Waiting for next scan...
+                    </p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+    </script>
+</body>
+
+</html>
