@@ -7,6 +7,66 @@
     <title>My Notifications - Epic Free Games</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .header-content {
+            flex: 1;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .btn-outline {
+            background: rgba(0, 255, 159, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-filled {
+            background: var(--primary);
+            border: none;
+            color: #0a0e27;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 255, 159, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -14,8 +74,22 @@
 
     <div class="container">
         <header>
-            <h1><i class="fas fa-gamepad"></i> Epic Free Games Notifier</h1>
-            <p>Your personal notification dashboard</p>
+            <div class="header-content">
+                <h1><i class="fas fa-gamepad"></i> Epic Free Games Notifier</h1>
+                <p>Your personal notification dashboard</p>
+            </div>
+            <div class="header-actions">
+                <a href="/games" style="text-decoration: none;">
+                    <button class="nav-btn btn-outline">
+                        <i class="fas fa-history"></i> Timeline
+                    </button>
+                </a>
+                <a href="/login" style="text-decoration: none;">
+                    <button class="nav-btn btn-filled">
+                        <i class="fas fa-user-shield"></i> Admin Panel
+                    </button>
+                </a>
+            </div>
         </header>
 
         <main>
@@ -45,7 +119,15 @@
             </section>
 
             <section class="card">
-                <h2><i class="fas fa-trophy"></i> Latest Free Games</h2>
+                <div
+                    style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+                    <h2 style="margin-bottom: 0;"><i class="fas fa-trophy"></i> Latest Free Games</h2>
+                    <div id="next-refresh"
+                        style="font-size: 0.9rem; color: var(--text-muted); background: rgba(255, 255, 255, 0.05); padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                        <i class="fas fa-clock"></i> Next Refresh: <span id="countdown"
+                            style="color: var(--primary); font-weight: bold;">Loading...</span>
+                    </div>
+                </div>
                 <div class="found-games-grid" id="gamesList">
                     <p style="color: var(--text-muted); text-align: center; padding: 2rem;">
                         <i class="fas fa-sync fa-spin"></i> Loading latest games...
@@ -174,6 +256,49 @@
                 alert('Error unsubscribing. Please try again.');
             }
         }
+
+        function updateCountdown() {
+            const now = new Date();
+            // Epic Games updates usually happen Thursday at 11:00 AM Eastern Time (UTC-4 or UTC-5)
+            // Using UTC 15:00 (3 PM) or 16:00 (4 PM) as approximation
+
+            let nextRefresh = new Date();
+            nextRefresh.setUTCHours(15, 0, 0, 0); // 15:00 UTC default
+
+            // Find next Thursday
+            // Day 4 is Thursday. If today is Thursday and it's past 15:00 UTC, go to next week
+            const day = now.getUTCDay();
+            const hour = now.getUTCHours();
+
+            let daysUntil = (4 - day + 7) % 7;
+            if (daysUntil === 0 && hour >= 15) {
+                daysUntil = 7;
+            }
+
+            nextRefresh.setUTCDate(now.getUTCDate() + daysUntil);
+
+            const diff = nextRefresh - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = "Refreshing soon...";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            let text = "";
+            if (days > 0) text += days + "d ";
+            text += hours + "h " + minutes + "m";
+
+            const el = document.getElementById('countdown');
+            if (el) el.innerHTML = text;
+        }
+
+        // Update countdown immediately and every minute
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
     </script>
 </body>
 
