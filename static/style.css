@@ -97,34 +97,34 @@ body::after {
     z-index: 0;
 }
 
-.particle {
+/* Game Icon Particles */
+.game-particle {
     position: absolute;
-    width: 6px;
-    height: 6px;
-    background: var(--primary);
-    border-radius: 50%;
-    box-shadow: 0 0 10px var(--primary);
-    animation: float 20s infinite;
+    color: var(--primary);
+    pointer-events: none;
+    z-index: 0;
+    /* Keep above background */
+    filter: blur(0.5px);
+    animation: floatIcon 20s linear infinite;
 }
 
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0) translateX(0);
+@keyframes floatIcon {
+    0% {
+        transform: translateY(0) rotate(0deg);
         opacity: 0;
     }
 
     10% {
-        opacity: 0.8;
+        opacity: 0.4;
+        /* Increased visibility */
     }
 
     90% {
-        opacity: 0.8;
+        opacity: 0.4;
     }
 
     100% {
-        transform: translateY(-100vh) translateX(100px);
+        transform: translateY(-100vh) rotate(360deg);
         opacity: 0;
     }
 }
@@ -242,6 +242,7 @@ main {
 
 input[type="email"],
 input[type="number"],
+input[type="password"],
 input[type="text"] {
     width: 100%;
     padding: 0.875rem 1rem;
@@ -252,6 +253,12 @@ input[type="text"] {
     font-size: 1rem;
     transition: all 0.3s ease;
     font-family: 'Inter', sans-serif;
+}
+
+input[type="password"] {
+    letter-spacing: 2px;
+    padding-right: 2.5rem;
+    /* Space for password eye icon */
 }
 
 input:focus {

@@ -84,10 +84,6 @@
                         <i class="fas fa-history"></i> Timeline
                     </button>
                 </a>
-                <a href="/login" style="text-decoration: none;">
-                    <button class="nav-btn btn-filled">
-                        <i class="fas fa-user-shield"></i> Admin Panel
-                    </button>
                 </a>
             </div>
         </header>
@@ -137,21 +133,11 @@
         </main>
     </div>
 
-    <script>
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            if (!particlesContainer) return;
+    <div id="particles"></div>
 
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-        createParticles();
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Removed inline particle logic in favor of script.js
 
         async function loadLatestGames() {
             const container = document.getElementById('gamesList');

@@ -1,44 +1,44 @@
 # Epic Free Games Notifier
 
-🎮 **Never miss a free game again!** Automated notification system for Epic Games Store free games with a beautiful web dashboard.
+**Never miss a free game again!** Automated notification system for Epic Games Store free games with a beautiful web dashboard.
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
 [![Flask](https://img.shields.io/badge/Flask-3.0%2B-green.svg)](https://flask.palletsprojects.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## ✨ Features
+## Features
 
-### 🔔 Smart Notifications
+### Smart Notifications
 - **Automatic Email Notifications** - Get emails when new free games are available
 - **Smart History Tracking** - Never get duplicate notifications
 - **Force Notify Option** - Manually trigger notifications for current games
 - **Customizable Schedule** - Choose when to check (hourly, daily, manual)
 
-### 🎨 Beautiful Web Dashboard
+### Beautiful Web Dashboard
 - **Modern UI** - Neon gaming theme with glassmorphism and animations
 - **Admin Panel** - Full control over all settings
 - **User Dashboard** - Personal view for each subscriber
 - **Games Timeline** - iPhone Photos-style gallery of free games
 - **Real-time Console** - Watch the scraper work live
 
-### 🔒 Secure & Private
+### Secure & Private
 - **Admin Authentication** - Protect settings with login
 - **Email Masking** - Privacy for public views
 - **Device Fingerprinting** - Track users without cookies
 - **Session Management** - Secure admin sessions
 
-### 💾 Flexible Storage
+### Flexible Storage
 - **JSON Mode** - Simple file-based storage (default)
 - **MongoDB Mode** - Scalable database storage
 - **Hybrid Mode** - Use both for redundancy
 
-### 🎯 Advanced Filtering
+### Advanced Filtering
 - **Price Threshold** - Set maximum acceptable price
 - **Currency Support** - INR, USD, EUR, GBP
 - **DLC Exclusion** - Filter out add-ons
 - **Beta Exclusion** - Skip early access games
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Python 3.8 or higher
@@ -98,7 +98,7 @@
    
    Open your browser to: `http://localhost:5000`
 
-## 📖 Usage
+## Usage
 
 ### For Users (Registration)
 
@@ -137,7 +137,7 @@
 - Clear games history
 - View games timeline
 
-## 🎮 How It Works
+## How It Works
 
 1. **Scraping**: Fetches free games from Epic Games Store API
 2. **Filtering**: Applies your preferences (price, DLC, beta)
@@ -145,13 +145,13 @@
 4. **Email Sending**: Sends beautiful HTML emails with game details
 5. **Tracking**: Saves games to history and database
 
-## 📧 Email Configuration
+## Email Configuration
 
 ### Gmail Setup
 
 1. Enable 2-Factor Authentication
 2. Generate App Password:
-   - Google Account → Security → 2-Step Verification → App Passwords
+   - Google Account - Security - 2-Step Verification - App Passwords
 3. Use the 16-character app password in `.env`
 
 ### Hostinger/Custom SMTP
@@ -166,7 +166,7 @@ FROM_EMAIL=your@domain.com
 
 **Custom Display Name**: The system automatically uses "Epic Free Games Notifier" as the sender name while keeping your email address.
 
-## 🔧 Advanced Configuration
+## Advanced Configuration
 
 ### Scheduling (PythonAnywhere or Linux)
 
@@ -214,7 +214,7 @@ Edit `settings.json` or use the web dashboard:
 }
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 epic-free-games-notifier/
@@ -243,11 +243,11 @@ epic-free-games-notifier/
         └── scrape.yml         # Automated scraping
 ```
 
-## 🌐 Deployment
+## Deployment
 
 ### PythonAnywhere (Free Hosting)
 
-See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for detailed instructions.
+See [PYTHONANYWHERE_DEPLOY.md](PYTHONANYWHERE_DEPLOY.md) for detailed instructions.
 
 **Quick Steps:**
 1. Upload files to PythonAnywhere
@@ -272,7 +272,7 @@ docker build -t epic-games-notifier .
 docker run -p 5000:5000 --env-file .env epic-games-notifier
 ```
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please:
 
@@ -281,27 +281,27 @@ Contributions are welcome! Please:
 3. Make your changes
 4. Submit a pull request
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) file.
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This project is for educational purposes. Use responsibly and respect Epic Games Store's terms of service. This tool simply aggregates publicly available information.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Epic Games Store API
 - Flask framework
 - Beautiful gaming community
 
-## 📞 Support
+## Support
 
 - **Issues**: [GitHub Issues](https://github.com/yourusername/epic-free-games-notifier/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/yourusername/epic-free-games-notifier/discussions)
 
 ---
 
-**Made with ❤️ for gamers who love free games!**
+**Made for gamers who love free games!**
 
-🎮 Happy Gaming! 🎮
+Happy Gaming!

@@ -61,10 +61,18 @@
             padding: 0.5rem;
             font-size: 1rem;
             transition: color 0.3s;
+            z-index: 2;
+        }
+
+        .password-toggle::before {
+            display: none !important;
         }
 
         .password-toggle:hover {
             color: var(--primary);
+            background: transparent !important;
+            box-shadow: none !important;
+            transform: translateY(-50%) !important;
         }
 
         .login-btn {
@@ -115,12 +123,14 @@
                     <input type="text" id="username" required autocomplete="username" value="admin">
                 </div>
 
-                <div class="form-group password-field">
+                <div class="form-group">
                     <label><i class="fas fa-key"></i> Password</label>
-                    <input type="password" id="password" required autocomplete="current-password">
-                    <button type="button" class="password-toggle" onclick="togglePassword()">
-                        <i class="fas fa-eye" id="toggleIcon"></i>
-                    </button>
+                    <div style="position: relative;">
+                        <input type="password" id="password" required autocomplete="current-password">
+                        <button type="button" class="password-toggle" onclick="togglePassword()">
+                            <i class="fas fa-eye" id="toggleIcon"></i>
+                        </button>
+                    </div>
                 </div>
 
                 <button type="submit" class="login-btn">
@@ -134,21 +144,8 @@
         </div>
     </div>
 
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
     <script>
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            if (!particlesContainer) return;
-
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                particlesContainer.appendChild(particle);
-            }
-        }
-        createParticles();
 
         function togglePassword() {
             const passwordInput = document.getElementById('password');

@@ -14,6 +14,7 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv('SECRET_KEY', secrets.token_hex(32))
 app.config['PERMANENT_SESSION_LIFETIME'] = 86400  # 24 hours
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  # Disable caching for static files
 
 # Admin credentials
 ADMIN_USERNAME = os.getenv('ADMIN_USERNAME', 'admin')
