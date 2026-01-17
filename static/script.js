@@ -6,6 +6,21 @@ function createGameParticles() {
     // Clear existing particles if any
     particlesContainer.innerHTML = '';
 
+    // Inject animation keyframes if not present (fallback for cached CSS)
+    if (!document.getElementById('particle-keyframes')) {
+        const style = document.createElement('style');
+        style.id = 'particle-keyframes';
+        style.innerHTML = `
+            @keyframes floatIcon {
+                0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+                10% { opacity: 0.4; }
+                90% { opacity: 0.4; }
+                100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
     const icons = [
         'fa-gamepad', 'fa-ghost', 'fa-dragon', 'fa-dice-d20',
         'fa-trophy', 'fa-rocket', 'fa-puzzle-piece', 'fa-headset',
@@ -19,6 +34,7 @@ function createGameParticles() {
         const randomIcon = icons[Math.floor(Math.random() * icons.length)];
 
         particle.className = `fas ${randomIcon} game-particle`;
+        particle.style.position = 'absolute'; // Ensure positioning works even if CSS fails
 
         // Random positioning
         particle.style.left = Math.random() * 100 + '%';
